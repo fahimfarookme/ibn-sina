@@ -1,7 +1,7 @@
 {
-    "name": "fahim-autocomplete",
+    "name": "ibn-sina-autocomplete",
     "description": "A lightweight autocomplete plugin for jQuery.",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "dependencies": {
         "jquery": ">=1.7"
     },
