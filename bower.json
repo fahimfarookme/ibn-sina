@@ -1,11 +1,11 @@
 {
-    "name": "ibn-sina-autocomplete",
+    "name": "ibn-sina",
     "description": "A lightweight autocomplete plugin for jQuery.",
-    "version": "2.0.2",
+    "version": "3.0.0",
     "dependencies": {
         "jquery": ">=1.7"
     },
-    "homepage": "https://github.com/fahimfarookme/jQuery-autoComplete.git",
+    "homepage": "https://github.com/fahimfarookme/ibn-sina.git",
     "authors": [{
         "name": "Simon Steinberger",
         "url": "https://pixabay.com/users/Simon/",
@@ -36,6 +36,6 @@
         "readme.md"
     ],
     "main": [
-        "jquery.auto-complete.js"
+        "ibn-sina.js"
     ]
 }
