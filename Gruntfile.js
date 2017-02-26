@@ -23,7 +23,8 @@ module.exports = function(grunt) {
    //    - <task> -> grunt-contrib-<task>
    require("jit-grunt")(grunt, {
       // for tasks whose name doesn't match the plugin name, load it explicitily.
-      useminPrepare: "grunt-usemin"
+      useminPrepare: "grunt-usemin",
+      replace: "grunt-text-replace"
    });
 
    // build properties
@@ -66,19 +67,16 @@ module.exports = function(grunt) {
             directory: "bower_components"
          };
       }
-      // bower.json
+      // verify bower.json
       bower = grunt.file.readJSON("bower.json");
       if (!bower || !bower.main) {
          grunt.fail.fatal(["bower.json or main section in bower.json is missing. bower.json=" + bower]);
       }
 
-      // package.json
+      // verify package.json
       var pkg = grunt.file.readJSON("package.json");
       if (!pkg || !pkg.name || !pkg.main) {
          grunt.fail.fatal(["package.json or name in package.json is missing. package.json=" + pkg]);
-      }
-      build.package = {
-          main: pkg.main
       }
 
       // routes
@@ -94,6 +92,21 @@ module.exports = function(grunt) {
 
       // settings
       config: config,
+
+      // replace name and versions on package.json and bower.json
+      replace: {
+         project: {
+            src: ["package.json", "bower.json"],
+            overwrite: true,
+            replacements: [{
+               from: "@@VERSION",
+               to: "<%= config.version %>"
+            }, {
+               from: /"version"(\s+)?:[^,]+/g,
+               to: "\"version\": \"<%= config.version %>\""
+            }]
+         }
+      },
 
       // delete files/ directories
       clean: {
@@ -135,7 +148,7 @@ module.exports = function(grunt) {
       concat: {
          dist: {
             src: ["<%= config.src %>/**/*.js"],
-            dest: "<%= config.temp %>/<%= config.package.main %>"
+            dest: "<%= config.temp %>/<%= config.name %>.min.js"
          }
       },
 
@@ -251,7 +264,7 @@ module.exports = function(grunt) {
          }
       }
 
-      var tasks = ["clean"]; // both .tmp and dist
+      var tasks = ["replace", "clean"]; // both .tmp and dist
 
       if (config.optimize.js.concat) {
          tasks.push("concat");
