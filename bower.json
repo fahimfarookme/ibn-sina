@@ -34,5 +34,5 @@
         "auto-complete.jquery.json",
         "readme.md"
     ],
-    "main": ["dist/ibn-sina.min.js"]
+    "main": ["dist/ibn-sina.js"]
 }

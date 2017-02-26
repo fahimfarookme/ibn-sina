@@ -71,10 +71,14 @@ module.exports = function(grunt) {
       if (!bower || !bower.main) {
          grunt.fail.fatal(["bower.json or main section in bower.json is missing. bower.json=" + bower]);
       }
-      for (prop in bower) {
-         if (bower.hasOwnProperty(prop)) {
-            build.bower[prop] = bower[prop];
-         }
+
+      // package.json
+      var pkg = grunt.file.readJSON("package.json");
+      if (!pkg || !pkg.name) {
+         grunt.fail.fatal(["package.json or name in package.json is missing. package.json=" + pkg]);
+      }
+      build.package = {
+          name: pkg.name
       }
 
       // routes
@@ -131,7 +135,7 @@ module.exports = function(grunt) {
       concat: {
          dist: {
             src: ["<%= config.src %>/**/*.js"],
-            dest: "<%= config.temp %>/<%= config.bower.main %>"
+            dest: "<%= config.temp %>/<%= config.package.name %>.js"
          }
       },
 
