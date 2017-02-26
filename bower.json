@@ -1,7 +1,6 @@
 {
     "name": "ibn-sina",
     "description": "A lightweight autocomplete plugin for jQuery.",
-    "version": "3.0.0",
     "dependencies": {
         "jquery": ">=1.7"
     },
@@ -35,7 +34,5 @@
         "auto-complete.jquery.json",
         "readme.md"
     ],
-    "main": [
-        "ibn-sina.js"
-    ]
+    "main": ["dist/ibn-sina.min.js"]
 }
