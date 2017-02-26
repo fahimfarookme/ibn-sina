@@ -74,11 +74,11 @@ module.exports = function(grunt) {
 
       // package.json
       var pkg = grunt.file.readJSON("package.json");
-      if (!pkg || !pkg.name) {
+      if (!pkg || !pkg.name || !pkg.main) {
          grunt.fail.fatal(["package.json or name in package.json is missing. package.json=" + pkg]);
       }
       build.package = {
-          name: pkg.name
+          main: pkg.main
       }
 
       // routes
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
       concat: {
          dist: {
             src: ["<%= config.src %>/**/*.js"],
-            dest: "<%= config.temp %>/<%= config.package.name %>.js"
+            dest: "<%= config.temp %>/<%= config.package.main %>"
          }
       },
 
