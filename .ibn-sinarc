@@ -1,4 +1,6 @@
 {
+   "name": "ibn-sina",
+   "version": "3.0.1",
    "src": "src",
    "test": "test",
    "dist": "dist",
