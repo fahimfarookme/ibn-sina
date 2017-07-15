@@ -75,7 +75,7 @@ module.exports = function(grunt) {
 
       // verify package.json
       var pkg = grunt.file.readJSON("package.json");
-      if (!pkg || !pkg.name || !pkg.main) {
+      if (!pkg || !pkg.name) {
          grunt.fail.fatal(["package.json or name in package.json is missing. package.json=" + pkg]);
       }
 
